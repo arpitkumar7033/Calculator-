@@ -73,3 +73,27 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
     .then(() => console.log("Service Worker Registered"));
 }
+
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("splash").classList.add("hide");
+},1500);
+});
+
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt",(e)=>{
+e.preventDefault();
+
+deferredPrompt=e;
+
+const btn=document.getElementById("installBtn");
+
+btn.hidden=false;
+
+btn.onclick=async()=>{
+deferredPrompt.prompt();
+await deferredPrompt.userChoice;
+btn.hidden=true;
+};
+});
