@@ -97,3 +97,7 @@ await deferredPrompt.userChoice;
 btn.hidden=true;
 };
 });
+
+window.addEventListener("offline",()=>{
+alert("You are offline. Calculator will continue to work.");
+});
